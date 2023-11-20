@@ -1,0 +1,8 @@
+﻿  main.cpp
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\main.cpp(6,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\player.h(19,36): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\player.h(22,20): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\player.h(25,22): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\player.h(28,26): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+C:\Users\Dylan\source\repos\TextRPG\TextRPG\main.cpp(7,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  TextRPG.vcxproj -> C:\Users\Dylan\source\repos\TextRPG\x64\Debug\TextRPG.exe
