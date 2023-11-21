@@ -15,7 +15,7 @@ UML Design Diagram
 ![DepthsOfDespairUML](https://github.com/dylangreenwell20/depthsofdespair/assets/147703440/91ed62bf-323e-408f-92da-1f331af3c8b6)
 
 Test Cases
-<img title="test cases" alt="test cases for cw1 game depths of despair" src="images/TestCases/DepthsOfDespairTestCases.png">
+![DepthsOfDespairTestCases](https://github.com/dylangreenwell20/depthsofdespair/assets/147703440/ff75a1a5-96e2-4031-8b24-702f5faf252e)
 
 Code and Game Walkthrough (YouTube Video)
 
