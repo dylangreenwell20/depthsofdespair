@@ -19,7 +19,7 @@ There are 2 endings to the game - a good ending and a bad ending, but the bad en
 ![DepthsOfDespairTestCases](https://github.com/dylangreenwell20/depthsofdespair/assets/147703440/ff75a1a5-96e2-4031-8b24-702f5faf252e)
 
 # Code and Game Walkthrough (YouTube Video)
-
+https://www.youtube.com/watch?v=Z8_jeM79UOQ
 
 # Link to GitHub Repository
 https://github.com/dylangreenwell20/depthsofdespair
