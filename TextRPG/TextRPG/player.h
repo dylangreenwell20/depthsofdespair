@@ -159,7 +159,7 @@ public:
 private:
 	std::string name; //name of player's character
 	std::string race; //race of player's character
-	std::string availableRaces[4] = { "Human", "Orc", "Monk" }; //available races for player to pick from
+	std::string availableRaces[3] = { "Human", "Orc", "Monk" }; //available races for player to pick from
 
 	int health; //player health
 	int maxHealth; //max health of the player
