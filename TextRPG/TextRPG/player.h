@@ -8,27 +8,22 @@ public:
 		//i do not need to set the race here as it is already set in the "CheckRace" function
 
 		maxHealth = 100; //max health of the player
-		experience = 0; //start at 0 experience
-		experienceGain = 1; //1 means 100%, so normal experience gain
 		damage = 10; //default damage value is 10
-		defence = 2; //default defence level
-		level = 1; //players start on level 1
 		depth = 1; //starting depth value
+		restsLeft = 3; //rests per level
 
 		if (race == "Human") { //if race is human
-			experienceGain = experienceGain * 1.5; //modify experience gain
+			damage = damage * 1.1; //modify damage
+			maxHealth = maxHealth * 1.1; //modify health
 		}
 		if (race == "Orc") { //if race is orc
 			damage = damage * 1.25; //modify damage
-		}
-		if (race == "Stoneborn") { //if race is stoneborn
-			defence = defence * 1.25; //modify defence
 		}
 		if (race == "Monk") { //if race is monk
 			maxHealth = maxHealth * 1.25; //modify max health
 		}
 
-		health = maxHealth;
+		health = maxHealth; //set health value to max health amount
 
 		std::cout << "\nRace selected. Welcome " + name + " the " + race + "!"; //welcome the created character
 	}
@@ -64,13 +59,9 @@ public:
 		system("cls"); //clear console
 		std::string healthString = std::to_string(health); //convert health to string
 		std::string maxHealthString = std::to_string(maxHealth); //convert max health to string
-		std::string levelString = std::to_string(level); //convert level to string
-		std::string experienceString = std::to_string(experience); //convert experience to string
 		std::string damageString = std::to_string(damage); //convert damage to string
-		std::string defenceString = std::to_string(defence); //convert defence to string
 
-		std::cout << ("Name: " + name + "\nRace: " + race + "\nLevel: " + levelString + "\nExperience: " + experienceString + " / 100" 
-			+ "\nHealth: " + healthString + " / " + maxHealthString + "\nDamage: " + damageString + "\nDefence: " + defenceString + "\n\n-----------------------------------------\n\n"); //this will display the player's stats
+		std::cout << ("Name: " + name + "\nRace: " + race + "\nHealth: " + healthString + " / " + maxHealthString + "\nDamage: " + damageString + "\n\n-----------------------------------------\n\n"); //this will display the player's stats
 	}
 
 	void RoomHud() {
@@ -90,32 +81,89 @@ public:
 		depth = newDepth; //set depth to new depth
 	}
 
-	void Heal(); //heal before going deeper
+	int GetCurrentHealth() { //function for passing on the 'current health' value
+		return health;
+	}
 
-	void Attack(); //attack an enemy
+	int GetMaxHealth() { //function for passing on the 'max health' value
+		return maxHealth;
+	}
 
-	void Escape(); //escape from an enemy
+	int GetDamage() { //function for passing on damage value
+		return damage;
+	}
 
-	void Block(); //block an attack with a chance to counter attack
+	std::string Heal() {  //heal before going deeper
+		bool canHeal = CheckHeal(); //check if the player can heal
+		if (canHeal) { //if player can heal
+			if (health == maxHealth) {
+				return("You have no need to rest as you are full health.\n\n");
+			}
+			else {
+				int healthToRegen = maxHealth * 0.2; //amount of health to regen is 20% of the players' max health
+				health = health + healthToRegen; //add health regen to health
+				if (health > maxHealth) { //if health is over max health
+					health = maxHealth; //health is set back to max health value
+					restsLeft = restsLeft - 1; //take away a rest
+					return("\nSuccessfully healed back up to full health.\n\n"); //output that the player is not full health
+				}
+				else {
+					std::string healthToRegenString = std::to_string(healthToRegen); //convert regen value to string
+					restsLeft = restsLeft - 1; //take away a rest
+					return ("\nSuccessfully healed for " + healthToRegenString + " health.\n\n"); //output how much the player healed for
+				}
+				
+			}
+			
+		}
+		else { //if the player cannot rest
+			return ("\nNo more rests left - it is time to venture forth...\n\n");
+		}
+	}
 
-	void GoDeeper(); //go deeper into the dungeon
+	bool CheckHeal() { //check if the player can heal
+		if (restsLeft > 0) { //if the number of rests left is greater than 0
+			return true;
+		}
+		else { //if the player has no more rests left
+			return false;
+		}
+	}
 
-	void TakeDamage(); //receive damage from enemy attacks
+	void TakeDamage(int takenDamage) { //receive damage from enemy attacks
+		health = health - takenDamage; //take away damage from health
+	}
+
+	bool IsDead() { //function for checking if the player is dead
+		if (health <= 0) { //if health is less than or equal to 0
+			return true;
+		}
+		else { //else if health is more than 0
+			return false;
+		}
+	}
+
+	void IncreaseStats(int statToIncrease) { //function to increase player stats
+		if (statToIncrease == 0) { //if statToIncrease is 0
+			damage = damage + 5; //increase damage
+		}
+		else if (statToIncrease == 1) { //if statToIncrease is 1
+			maxHealth = maxHealth + 10; //increase health by 10
+		}
+	}
+
+	void ResetRestAmount() { //used to reset number of rests back to 3 after a fight
+		restsLeft = 3;
+	}
 
 private:
 	std::string name; //name of player's character
 	std::string race; //race of player's character
-	std::string availableRaces[4] = { "Human", "Orc", "Stoneborn", "Monk" }; //available races for player to pick from
+	std::string availableRaces[4] = { "Human", "Orc", "Monk" }; //available races for player to pick from
 
 	int health; //player health
 	int maxHealth; //max health of the player
-	int experience; //when a player reaches 100 experience they will level up
-	int experienceGain; //the rate at which the player gains experience
-	int damage; //damage is how much the player can hurt the enemy - however the actual damage inflicted can be changed by up to -20%/+20%
-	int defence; //defence is 1-10, so every enemy and the player will roll 0-10 each hit, if that roll is higher than the opponents defence then they will hit
-	int level; //player level - each level the player will gain some max health and damage
+	int damage; //damage is how much the player can hurt the enemy
 	int depth; //how far the player is in the dungeon - used to calculate when to show a chest room or boss
 	int restsLeft; //how many times the player can rest - resting is used to regain hp when not in combat
-
-	bool canRest; //if the player is able to rest to restore hp
 };
