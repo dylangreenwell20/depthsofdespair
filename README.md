@@ -12,7 +12,7 @@ Combat is automatic and the player can choose what stat upgrade they want and wh
 There are 2 endings to the game - a good ending and a bad ending, but the bad ending is more of a joke.
 
 UML Design Diagram
-<img title="uml diagram" alt="uml diagram for cw1 game depths of despair" src="images/UML/DepthsOfDespairUML.png">
+![DepthsOfDespairUML](https://github.com/dylangreenwell20/depthsofdespair/assets/147703440/91ed62bf-323e-408f-92da-1f331af3c8b6)
 
 Test Cases
 <img title="test cases" alt="test cases for cw1 game depths of despair" src="images/TestCases/DepthsOfDespairTestCases.png">
