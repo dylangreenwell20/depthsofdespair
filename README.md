@@ -1,4 +1,4 @@
-# depthsofdespair
+# Depths of Despair README
 COMP3016 C++ Console Application Game
 
 To develop the game, I used the following versions of Visual Studio and Windows 10:
